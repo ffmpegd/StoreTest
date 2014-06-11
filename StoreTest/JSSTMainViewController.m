@@ -85,13 +85,24 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     // Configure the cell...
-    NSDictionary *result = [self.searchResults objectAtIndex:indexPath.row];
-    cell.textLabel.text = [result objectForKey:@"trackName"];
-    UIImage *iconImage = [self.resultIcons objectAtIndex:indexPath.row];
-    if (iconImage)
+    
+    if (indexPath.row < [self.searchResults count])
     {
-        cell.imageView.image = [self.resultIcons objectAtIndex:indexPath.row];
+        NSDictionary *result = [self.searchResults objectAtIndex:indexPath.row];
+        cell.textLabel.text = [result objectForKey:@"trackName"];
+        UIImage *iconImage = [self.resultIcons objectAtIndex:indexPath.row];
+        if (iconImage)
+        {
+            cell.imageView.image = [self.resultIcons objectAtIndex:indexPath.row];
+        }
     }
+    else
+    {
+        cell.textLabel.text = @"";
+        cell.imageView.image = [[UIImage alloc] init];
+    }
+    
+
     return cell;
 }
 
@@ -214,8 +225,10 @@
         NSDictionary *result = [self.searchResults objectAtIndex:i];
         NSURL *iconURL = [NSURL URLWithString:[result objectForKey:@"artworkUrl60"]];
         self.iconsTask = [session dataTaskWithURL:iconURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            if (i < [self.resultIcons count]) {
-                [self.resultIcons replaceObjectAtIndex:i withObject:[UIImage imageWithData:data]];
+            UIImage *iconImage = [UIImage imageWithData:data];
+            if (iconImage && i < [self.resultIcons count])
+            {
+                [self.resultIcons replaceObjectAtIndex:i withObject:iconImage];
                 [self.searchController.searchResultsTableView performSelectorOnMainThread:@selector(reloadData) withObject:self waitUntilDone:YES];
             }
         }];

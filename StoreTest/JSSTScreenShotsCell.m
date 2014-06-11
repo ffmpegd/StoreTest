@@ -30,6 +30,10 @@
     // Initialization code
     NSLog(@"initing sscell, array count: %lu",(unsigned long)[self.resultScreenShots count]);
     self.screenShotsURLArray = [[NSMutableArray alloc] initWithCapacity:[self.resultScreenShots count]];
+    if (self.scrollView)
+    {
+        [self.scrollView removeFromSuperview];
+    }
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 200.0)];
     [self.scrollView setContentMode:UIViewContentModeScaleAspectFit];
     CGFloat width = [self.resultScreenShots count] * (114.0 + 5.0) + 5.0;

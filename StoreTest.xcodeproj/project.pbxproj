@@ -142,7 +142,6 @@
 				B384AC1C19433AF60059658A /* Images.xcassets */,
 				B384AC1119433AF60059658A /* Supporting Files */,
 			);
-			name = StoreTest;
 			path = StoreTest;
 			sourceTree = "<group>";
 		};
@@ -163,7 +162,6 @@
 				B384AC2F19433AF60059658A /* StoreTestTests.m */,
 				B384AC2A19433AF60059658A /* Supporting Files */,
 			);
-			name = StoreTestTests;
 			path = StoreTestTests;
 			sourceTree = "<group>";
 		};
@@ -409,6 +407,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uncarbonated Software LLC (54BWKQZ2VX)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoreTest/StoreTest-Prefix.pch";
 				INFOPLIST_FILE = "StoreTest/StoreTest-Info.plist";
